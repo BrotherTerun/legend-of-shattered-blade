@@ -1,0 +1,31 @@
+{
+  "id": "prologue_temple",
+  "nodes": [
+    {
+      "id": "start",
+      "speaker": "Монах",
+      "text": "Ты пришёл в храм в час, когда солнце уже не греет.",
+      "portrait": "Portraits/Monk",
+      "choices": [
+        {
+          "text": "Склонить голову в знак уважения",
+          "nextNodeId": "respect",
+          "light": 1,
+          "darkness": 0,
+          "pathEffects": [
+            { "path": "Light", "value": 1 }
+          ]
+        },
+        {
+          "text": "Молча осмотреться",
+          "nextNodeId": "observe",
+          "light": 0,
+          "darkness": 1,
+          "pathEffects": [
+            { "path": "Air", "value": 1 }
+          ]
+        }
+      ]
+    }
+  ]
+}
