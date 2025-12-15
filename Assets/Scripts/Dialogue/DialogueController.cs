@@ -15,6 +15,7 @@ public class DialogueController : MonoBehaviour
     [Header("Game State")]
     public PlayerStats playerStats;
 
+    [Header("Logs")]
     public DialogueLog dialogueLog;
 
     [Header("DialogueData")]
@@ -27,6 +28,16 @@ public class DialogueController : MonoBehaviour
         GoToNode("start");
     }
 
+    // временный стартер диалога
+    [Header("Startup")]
+    public string startDialogueFile;
+
+    void Start()
+    {
+        if (!string.IsNullOrEmpty(startDialogueFile))
+            StartDialogue(startDialogueFile);
+    }
+    
     void GoToNode(string nodeId)
     {
         currentNode = data.nodes.Find(n => n.id == nodeId);
@@ -40,6 +51,8 @@ public class DialogueController : MonoBehaviour
 
         dialogueLog?.Add(currentNode.speaker, currentNode.text);
 
+        Debug.Log($"Choices count: {(currentNode.choices == null ? "NULL" : currentNode.choices.Count.ToString())}"); 
+        
         if (!string.IsNullOrEmpty(currentNode.portrait))
             portraitImage.sprite = Resources.Load<Sprite>(currentNode.portrait);
 
