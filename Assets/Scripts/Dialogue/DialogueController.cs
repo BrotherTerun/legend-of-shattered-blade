@@ -6,11 +6,11 @@ using TMPro;
 public class DialogueController : MonoBehaviour
 {
     [Header("UI")]
-    public TMP_Text speakerText;
     public TMP_Text dialogueText;
     public Image portraitImage;
     public Transform choicesRoot;
     public GameObject choiceButtonPrefab;
+    [SerializeField] private DialogueLayoutController layout;
 
     [Header("Game State")]
     public PlayerStats playerStats;
@@ -46,8 +46,11 @@ public class DialogueController : MonoBehaviour
 
     void RenderNode()
     {
-        speakerText.text = currentNode.speaker;
-        dialogueText.text = currentNode.text;
+        if (currentNode.speaker != "")
+            dialogueText.text = $"<style=\"Speaker\">{currentNode.speaker}:</style> {currentNode.text}";
+        else
+            dialogueText.text = $"{currentNode.text}";
+        layout.RebuildLayout();
 
         dialogueLog?.Add(currentNode.speaker, currentNode.text);
 
