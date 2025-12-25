@@ -9,5 +9,5 @@ public class PlayerStats : ScriptableObject
     public int fire, water, earth, air;
     public int blood, bone, flesh, metal;
 
-    public int honor, duty, will, insight, resolve;
+    public int honor, duty, will, insight, resolve, sincerity;
 }
