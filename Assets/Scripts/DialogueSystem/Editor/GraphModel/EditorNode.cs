@@ -18,6 +18,8 @@ namespace DialogueSystem.Editor.GraphModel
         public bool isEnd;
         public DialogueEnd end;
 
+        public List<EditorChoiceData> choices;
+
         // Исходящие связи
         public List<EditorEdge> edges = new List<EditorEdge>();
     }

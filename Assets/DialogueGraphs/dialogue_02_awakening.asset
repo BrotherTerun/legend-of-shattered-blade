@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c769751628bb5df45beb1cb7d3ff12ff, type: 3}
-  m_Name: DialogueXNode_Test
+  m_Name: dialogue_02_awakening
   m_EditorClassIdentifier: Assembly-CSharp-Editor::DialogueSystem.Editor.XNode.DialogueXNodeGraph
   nodes:
   - {fileID: 0}

@@ -2,6 +2,7 @@
 using UnityEngine;
 using DialogueSystem.Editor.GraphModel;
 using DialogueSystem.Runtime;
+using System.Collections.Generic;
 
 namespace DialogueSystem.Editor.Parsing
 {
@@ -34,6 +35,27 @@ namespace DialogueSystem.Editor.Parsing
                     return false;
             }
         }
+
+        private static List<EditorChoiceData> MapChoices(
+            List<DialogueChoiceData> runtimeChoices)
+        {
+            if (runtimeChoices == null || runtimeChoices.Count == 0)
+                return null;
+
+            var result = new List<EditorChoiceData>();
+
+            foreach (var choice in runtimeChoices)
+            {
+                result.Add(new EditorChoiceData
+                {
+                    label = choice.text,
+                    targetNodeId = choice.next
+                });
+            }
+
+            return result;
+        }
+
 
         public static EditorGraphParseResult Parse(DialogueData data)
         {
@@ -97,12 +119,15 @@ namespace DialogueSystem.Editor.Parsing
                     }
                 }
 
+
+
                 var editorNode = new EditorNode
                 {
                     id = nodeId,
                     speaker = nodeData.speaker,
                     text = nodeData.text,
                     input = parsedInput,
+                    choices = MapChoices(nodeData.choices),
                     isEnd = nodeData.end != null && nodeData.end.IsValid,
                     end = nodeData.end,
                 };
